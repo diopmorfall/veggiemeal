@@ -1,12 +1,23 @@
+import { createRoot } from 'react-dom/client';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
-//todo: add API key: import.meta.env.VITE_SPOONACULAR_API
+
+import Header from './components/Header'
+import HomePage from './components/HomePage'
+//todo: add API key => import.meta.env.VITE_SPOONACULAR_API
 
 export default function App() {
     return (
-        <div>
-            <h2>veggiemeal.com</h2>
-        </div>
+        <Router>
+            <Header />
+            <Routes>
+                <Route exact path="/" element={<HomePage />} />
+            </Routes>
+        </Router>
     )
 }
+
 
 
