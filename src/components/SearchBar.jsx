@@ -13,16 +13,17 @@ export default function SearchBar() {
     };
 
     return (
-        <form className="w-1/2 flex flex-row justify-between items-center p-3 border-2 rounded-md bg-transparent" onSubmit={handleSearch}>
+        <form className="w-2/3 h-10 flex flex-row justify-between items-center p-4 border-2 border-black rounded-3xl bg-transparent" onSubmit={handleSearch}>
             <input
                 type="text"
-                className="lowercase"
+                className="lowercase outline-none bg-transparent italic"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 autoFocus={true}
+                placeholder='Search recipes...'
             />
             <button type="submit" className="p-2 rounded-full">
-                <img src={searchMenuIcon} className='w-8 ' />
+                <img src={searchMenuIcon} className='w-6' />
             </button>
         </form>
     )
