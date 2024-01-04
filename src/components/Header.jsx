@@ -8,7 +8,11 @@ import MobileMenu from './MobileMenu';
 
 export default function Header() {
     const navigate = useNavigate()
-    const [isMenuShown, setIsMenuShown] = useState(true);
+    const [isMenuShown, setIsMenuShown] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuShown(!isMenuShown)
+    }
 
     return (
         <header className='fixed w-full flex flex-col items-center justify-center bg-green-200'>
@@ -19,20 +23,22 @@ export default function Header() {
                 >
                     veggiemeal.com
                 </h2>
-                {isMenuShown ? (
+                <div onClick={toggleMenu}>
+                    {isMenuShown ? (
                     <img
                         src={closeMenuIcon}
-                        className='w-7 hidden sm:w-9 md:hidden'
-                    />
-                ) : (
-                    <img
-                        src={openMenuIcon}
                         className='w-7 sm:w-9 md:hidden'
                     />
-                )}
+                    ) : (
+                        <img
+                            src={openMenuIcon}
+                            className='w-7 sm:w-9 md:hidden'
+                        />
+                    )}
+                </div>
                 
             </nav>
-            {!isMenuShown ? '' : <MobileMenu />}
+            {isMenuShown && <MobileMenu />}
         </header>
     )
 }
