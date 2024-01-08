@@ -13,7 +13,9 @@ export default function SearchBar() {
     };
 
     return (
-        <form className="w-2/3 h-10 flex flex-row justify-between items-center p-4 border-2 border-black rounded-3xl bg-transparent" onSubmit={handleSearch}>
+        <form className="w-2/3 h-10 flex flex-row justify-between items-center p-4 border-2 border-black rounded-3xl bg-transparent md:w-1/2"
+            onSubmit={handleSearch}
+        >
             <input
                 type="text"
                 className="lowercase outline-none bg-transparent italic"
