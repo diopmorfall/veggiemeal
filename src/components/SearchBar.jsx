@@ -13,7 +13,7 @@ export default function SearchBar() {
     };
 
     return (
-        <form className="w-2/3 h-10 flex flex-row justify-between items-center p-4 border-2 border-black rounded-3xl bg-transparent md:w-1/2"
+        <form className="w-2/3 h-10 flex flex-row justify-between items-center p-4 border-2 border-black rounded-3xl bg-transparent md:w-1/2 nav-searchbar"
             onSubmit={handleSearch}
         >
             <input
@@ -25,7 +25,7 @@ export default function SearchBar() {
                 placeholder='Search recipes...'
             />
             <button type="submit" className="p-2 rounded-full">
-                <img src={searchMenuIcon} className='w-6' />
+                <img src={searchMenuIcon} className='w-6 ' />
             </button>
         </form>
     )
