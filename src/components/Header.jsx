@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import openMenuIcon from "../assets/icons/open_menu_icon.svg";
@@ -8,36 +8,48 @@ import HeaderMenu from './HeaderMenu';
 
 export default function Header() {
     const navigate = useNavigate()
-    const [isMenuShown, setIsMenuShown] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const toggleMenu = () => {
-        setIsMenuShown(!isMenuShown)
+        setIsMobileMenuOpen(!isMobileMenuOpen)
     }
 
+    useEffect(() => {
+        setWindowWidth(window.innerWidth);
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
-        <header className='fixed w-full flex flex-col items-center justify-center bg-green-200'>
-            <nav className='w-full flex flex-row justify-between items-center py-4 px-5 lg:p-6'>
+        <header className='fixed w-full flex flex-col items-center justify-center bg-green-200 lg:h-20 '>
+            <nav className='w-full flex flex-row justify-between items-center py-4 px-5 md:py-6 lg:pl-8'>
                 <h2 
                     onClick={() => navigate('/')}
                     className='italic font-semibold text-lg sm:text-xl lg:text-2xl'
                 >
                     veggiemeal.com
                 </h2>
-                <div onClick={toggleMenu}>
-                    {isMenuShown ? (
-                    <img
-                        src={closeMenuIcon}
-                        className='w-7 md:w-8 lg:hidden'
-                    />
-                    ) : (
-                        <img
-                            src={openMenuIcon}
-                            className='w-7 md:w-8 lg:hidden'
-                        />
-                    )}
-                </div>
+                {windowWidth < 1024
+                    ? (
+                        <div onClick={toggleMenu} className='lg:hidden'>
+                            {isMobileMenuOpen ? (
+                                    <img
+                                        src={closeMenuIcon}
+                                        className='w-7 md:w-8'
+                                    />
+                                ) : (
+                                    <img
+                                        src={openMenuIcon}
+                                        className='w-7 md:w-8'
+                                    />
+                            )}
+                        </div>
+                    ) : (<HeaderMenu />)
+                }
             </nav>
-            {isMenuShown && <HeaderMenu />}
+            {isMobileMenuOpen && (windowWidth < 1024) ? <HeaderMenu /> : ''}
         </header>
     )
 }
