@@ -39,7 +39,7 @@ export default function HeaderMenu() {
                 </ul>
             </div>
             {isSearchbarShown && 
-                <div className='absolute top-32 w-[500px] h-[250px] mx-auto flex justify-center items-center bg-blue-100 rounded-xl'>
+                <div className='floating-searchbar absolute top-32 w-[500px] h-[250px] mx-auto flex justify-center items-center bg-blue-100 rounded-xl'>
                     <img
                         src={closeMenuIcon}
                         onClick={() => setIsSearchbarShown(false)}
