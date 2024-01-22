@@ -12,8 +12,7 @@
 
 @media only screen and (min-width: 1024px){
     .floating-searchbar form{
-        margin: 0 50%;
-        width: 70%;
+        width: 60%;
         height: 25%;
         font-size: x-large;
     }
