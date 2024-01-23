@@ -26,13 +26,13 @@ export default function HeaderMenu() {
                     ? <SearchBar />
                     : <img
                     src={searchMenuIcon}
-                    className='w-6 ml-10 xl:w-7'
+                    className='w-6 ml-10 lg:w-6'
                     onClick={() => setIsSearchbarShown(true)}
                     />
                 }
                 <ul className='flex flex-col justify-around items-center list-none mt-8 lg:flex-row lg:mt-0 lg:font-semibold'>
                     {menuOptions.map(option => 
-                        <li key={option} className='text-lg m-2 xl:text-xl xl:ml-4'>
+                        <li key={option} className='text-md m-2 md:text-xl xl:ml-4'>
                             {option}
                         </li>
                     )}

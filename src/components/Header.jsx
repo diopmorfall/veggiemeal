@@ -23,11 +23,11 @@ export default function Header() {
     }, []);
 
     return (
-        <header className='fixed w-full flex flex-col items-center justify-center bg-green-200 lg:h-20 '>
+        <header className='fixed w-full flex flex-col items-center justify-center bg-green-200 lg:h-16 '>
             <nav className='w-full h-full flex flex-row justify-between items-center p-5 md:py-6 lg:pl-8'>
                 <h2 
                     onClick={() => navigate('/')}
-                    className='italic font-semibold text-lg sm:text-xl lg:text-2xl lg:mr-12 xl:text-3xl'
+                    className='italic font-semibold text-lg sm:text-xl lg:text-2xl lg:mr-12'
                 >
                     veggiemeal.com
                 </h2>
