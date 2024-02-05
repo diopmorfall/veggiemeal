@@ -7,13 +7,21 @@
 }
 
 #root{
-    @apply h-full w-full;
+    @apply relative h-full w-full flex flex-col justify-between;
 }
 
 @media only screen and (min-width: 1024px){
+    .floating-searchbar{
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     .floating-searchbar form{
         width: 60%;
-        height: 25%;
-        font-size: x-large;
+        height: 15%;
+    }
+
+    .floating-searchbar form img{
+        width: 1.5rem;
     }
 }

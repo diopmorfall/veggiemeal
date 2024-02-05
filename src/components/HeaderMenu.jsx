@@ -20,30 +20,30 @@ export default function HeaderMenu() {
 
     return (
         <>
-            <div className='w-full h-screen flex flex-col items-center py-16 bg-transparent italic
-                lg:flex-row-reverse lg:h-4/5 lg:w-4/5 lg:py-4'>
+            <div className='w-full h-screen absolute top-16 flex flex-col items-center py-16 bg-green-200 italic
+                lg:flex-row-reverse lg:top-2 lg:right-3 lg:h-4/5 lg:w-3/4 lg:py-4'>
                 {windowWidth < 1024
                     ? <SearchBar />
                     : <img
-                    src={searchMenuIcon}
-                    className='w-6 ml-10 lg:w-6'
-                    onClick={() => setIsSearchbarShown(true)}
+                        src={searchMenuIcon}
+                        className='w-6 ml-10 lg:w-6 lg:mx-4 lg:cursor-pointer'
+                        onClick={() => setIsSearchbarShown(true)}
                     />
                 }
                 <ul className='flex flex-col justify-around items-center list-none mt-8 lg:flex-row lg:mt-0 lg:font-semibold'>
                     {menuOptions.map(option => 
-                        <li key={option} className='text-md m-2 md:text-xl xl:ml-4'>
+                        <li key={option} className='text-md m-2 md:text-2xl lg:text-lg md:m-4 lg:m-2 xl:ml-4'>
                             {option}
                         </li>
                     )}
                 </ul>
             </div>
             {isSearchbarShown && 
-                <div className='floating-searchbar absolute top-32 w-[600px] h-[250px] mx-[27%] flex justify-center items-center bg-green-100 rounded-xl'>
+                <div className='floating-searchbar absolute top-32 w-[600px] h-[250px] flex justify-center items-center bg-green-100 rounded-xl'>
                     <img
                         src={closeMenuIcon}
                         onClick={() => setIsSearchbarShown(false)}
-                        className='absolute top-4 right-4'
+                        className='absolute top-4 right-4 lg:cursor-pointer'
                     />
                     <SearchBar />
                 </div>

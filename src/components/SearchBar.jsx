@@ -13,7 +13,7 @@ export default function SearchBar() {
     };
 
     return (
-        <form className="w-2/3 h-10 flex flex-row justify-between items-center p-4 border-2 border-black rounded-full bg-transparent md:w-1/2 md:h-12 xl:w-1/3"
+        <form className="w-2/3 h-10 flex flex-row justify-between items-center p-4 my-6 border-2 border-black rounded-full bg-transparent md:w-1/2 md:h-12 xl:w-1/3"
             onSubmit={handleSearch}
         >
             <input
