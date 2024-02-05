@@ -54,7 +54,22 @@ export default function HomePage() {
                 )}
             </div>
             <p className='text-lg my-6 md:text-lg'>...or look at the latest recipes</p>
-            
+            {isLoading && <p>Loading...</p>}
+            {!isLoading && error ? <div>Error: {error}</div> : ''}
+            {!isLoading && recipes.length > 0 ?
+                (
+                    recipes.map(recipe => 
+                        <RecipeCard
+                            key={recipe.id}
+                            id={recipe.id}
+                            title={recipe.title}
+                            servings={recipe.servings}
+                            readyInMinutes={recipe.readyInMinutes}
+                            image={recipe.image}
+                        />             
+                    )
+                ) : <p className='text-red-400'>No recipes found</p>
+            }
         </main>
     )
 }
