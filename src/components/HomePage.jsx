@@ -9,23 +9,15 @@ export default function HomePage() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [recipes, setRecipes] = useState([]);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const API_KEY = import.meta.env.VITE_API_KEY;
 
     const navigate = useNavigate()
     const meals = ["Breakfast", "Main course", "Appetizer", "Side dish", "Dessert", "Drink"];
 
-    useEffect(() => {
-        setWindowWidth(window.innerWidth);
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     function setRecipeArrayLength(){
-        return windowWidth < 768
+        return window.innerWidth < 768
             ? 4
-            : windowWidth < 1024
+            : window.innerWidth < 1024
                 ? 6
                 : 8
     }
