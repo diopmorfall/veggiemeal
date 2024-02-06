@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import SearchBar from './SearchBar'
 import RecipeCard from './RecipeCard'
@@ -14,36 +15,31 @@ export default function HomePage() {
     const meals = ["Breakfast", "Main course", "Appetizer", "Side dish", "Dessert", "Drink"];
 
     async function getRandomRecipes() {
-        try {
-            setIsLoading(true);
-            const response = await fetch(
-                `https://api.spoonacular.com/recipes/search?apiKey=${API_KEY}&diet=vegetarian|vegan`
-            );
-            const data = await response.json();
-            console.log(data.results);
-            setRecipes(recipes);
-        } catch (e) {
-            setError(e.message);
-        }
+        setIsLoading(true);
+        const res = await axios.get(
+            `https://api.spoonacular.com/recipes/search?apiKey=${API_KEY}&diet=vegetarian|vegan`
+        ).catch(error => console.log(error))
+        console.log(res.data);
+        setRecipes(res.data.results);
         setIsLoading(false);
-      }
+    }
     
-      useEffect(() => {
-        //getRandomRecipes();
-      }, []);
+    useEffect(() => {
+        getRandomRecipes();
+    }, []);
 
     return (
         <main className='h-min relative top-16 flex flex-col items-center justify-between italic'>
             <h2 
                 onClick={() => navigate('/')}
-                className='font-semibold text-3xl mt-8 mb-6 md:mt-24 md:mb-12 md:text-[40px]'
+                className='font-semibold text-3xl mt-8 mb-8 md:mt-24 md:mb-12 md:text-[40px]'
             >
                 veggiemeal.com
             </h2>
-            <p className='text-lg md:text-lg md:my-4'>Look for vegetarian and vegan recipes...</p>
+            <p className='text-lg font-semibold md:text-lg md:my-4'>Look for vegetarian and vegan recipes...</p>
             <SearchBar />
-            <p className='text-lg md:text-lg md:my-4'>...or search them by course...</p>
-            <div className='card-courses grid grid-cols-2 gap-6 w-4/5 p-2 my-6 lg:grid-cols-3 lg:w-3/5'>
+            <p className='text-lg font-semibold md:text-lg md:my-4'>...or search them by course...</p>
+            <div className='card-courses grid grid-cols-2 gap-6 w-4/5 p-2 my-6 md:w-3/5 lg:grid-cols-3 lg:w-3/4'>
                 {meals.map(meal => 
                     <div key={meal} className='w-full h-[200px] flex flex-col justify-between items-center pb-4 rounded-xl bg-blue-400
                         md:h-[300px]
@@ -53,9 +49,9 @@ export default function HomePage() {
                     </div>    
                 )}
             </div>
-            <p className='text-lg my-6 md:text-lg'>...or look at the latest recipes</p>
+            <p className='text-lg font-semibold my-6 md:text-lg'>...or look at the latest recipes</p>
             {isLoading && <p>Loading...</p>}
-            {!isLoading && error ? <div>Error: {error}</div> : ''}
+            {!isLoading && error ? <p className='text-red-400'>Error: {error}</p> : ''}
             {!isLoading && recipes.length > 0 ?
                 (
                     recipes.map(recipe => 
@@ -68,7 +64,9 @@ export default function HomePage() {
                             image={recipe.image}
                         />             
                     )
-                ) : <p className='text-red-400'>No recipes found</p>
+                ) : <p className='text-center px-8 font-semibold text-red-400 md:px-16 md:text-lg'>
+                        We're sorry we couldn't give you recipes suggestions. Please search for the recipes you're interest to
+                    </p>
             }
         </main>
     )
