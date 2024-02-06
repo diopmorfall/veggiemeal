@@ -16,14 +16,14 @@ export default function RecipeCard({
     }
 
     return (
-        <div className="w-2/3 h-[350px] flex flex-col items-center justify-around text-center p-4 rounded-xl border-2 md:w-1/2 md:text-lg lg:w-1/4">
-            <img className='w-full' src={`${baseUri}${image}`} alt={title} />
-            <h2 className='font-bold'>{title}</h2>
-            <p>Servings: {servings}</p>
-            <h4>Ready in {readyInMinutes} minutes</h4>
-            <p className="" onClick={getRecipeData}>
-                See how to cook it
-            </p>
+        <div onClick={getRecipeData}
+            className="w-2/3 h-[350px] flex flex-col items-center justify-between text-center pb-4 my-6 rounded-xl border-2
+            md:w-full md:text-lg lg:w-full"
+        >
+            <img className='w-full h-1/2 rounded-t-xl' src={`${baseUri}${image}`} alt={title} />
+            <h2 className='font-bold px-4'>{title}</h2>
+            <p>{servings} servings</p>
+            <h4>{readyInMinutes} minutes</h4>
         </div>
     );
 }
