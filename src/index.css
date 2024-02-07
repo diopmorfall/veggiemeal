@@ -7,7 +7,7 @@
 }
 
 #root{
-    @apply relative h-full w-full flex flex-col justify-between;
+    @apply relative h-full w-full flex flex-col justify-between italic;
 }
 
 @media only screen and (min-width: 1024px){

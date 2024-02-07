@@ -36,7 +36,7 @@ export default function HomePage() {
     }, []);
 
     return (
-        <main className='h-min relative top-16 flex flex-col items-center justify-between italic'>
+        <main className='h-min relative top-16 flex flex-col items-center justify-between'>
             <h2 
                 onClick={() => navigate('/')}
                 className='font-semibold text-3xl mt-8 mb-8 md:mt-24 md:mb-12 md:text-[40px]'
